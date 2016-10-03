@@ -1,0 +1,12 @@
+coverage
+docs
+examples
+src
+test
+.babelrc
+.editorconfig
+.eslintrc
+.gitignore
+.istanbul.yml
+.travis.yml
+jsdoc.json

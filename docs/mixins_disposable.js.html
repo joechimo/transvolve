@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>mixins/disposable.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">mixins/disposable.js</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    <!--source.tmpl-->
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Symbol from 'es6-symbol';
+import forEach from 'lodash/forEach';
+import isFunction from 'lodash/isFunction';
+
+const FIELDS = {
+  isDisposable: Symbol('isDisposable'),
+  isDisposing: Symbol('isDisposing'),
+  isDisposed: Symbol('isDisposed'),
+};
+
+/**
+ * Extends an object with functions that help manage clean disposal.
+ * @mixin Disposable
+ * @param {Symbol | String} symbolOrKey - Symbol or key in order to get inner event emitter.
+ * @param {Function} onDispose - The handler for the dispose event.
+ * @return {Object} Mixin.
+ */
+export default function mixin(resources, onDispose) {
+  return {
+    constructor() {
+      this[FIELDS.isDisposable] = true;
+      this[FIELDS.isDisposed] = false;
+    },
+
+    isDisposed() {
+      return this[FIELDS.isDisposed];
+    },
+
+    dispose() {
+      if (this[FIELDS.isDisposable]) {
+        this[FIELDS.isDisposable] = false;
+
+        if (this[FIELDS.isDisposed]) {
+          return;
+        }
+
+        if (isFunction(onDispose)) {
+          onDispose.call(this);
+        }
+
+        forEach(resources, (key) => {
+          const resource = this[key];
+
+          if (resource &amp;&amp; resource[FIELDS.isDisposable]) {
+            resource.dispose();
+          }
+
+          this[key] = null;
+        });
+
+        this[FIELDS.isDisposed] = true;
+      }
+    },
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Mon Oct 03 2016 15:56:05 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

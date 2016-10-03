@@ -57,7 +57,7 @@ function transition(...args) {
  * @namespace Component
  * @class
  * A component is simply a structured set of data defined by a type.
- * @example
+ * @examples
  * const component = new Component('health', { hp: 100 });
  * const componentType = component.getType();
  * @param {!string} type - The component type.
@@ -140,7 +140,7 @@ const Component = createClass({
    * Get data from the component state. Returns the entire state if no path is specified.
    * @param {string} [path] - The path to a value in the state.
    * @returns {*} The requested value from the state.
-   * @example
+   * @examples
    * # Will set handle equal to 'TheChimo'
    * const component = new Component('player', { user: { id: 1337, handle: 'TheChimo' } };
    * const handle = component.get('user.handle');
@@ -173,7 +173,7 @@ const Component = createClass({
    * @param {string} [path] - The path in the state where to set the data.
    * @param {*} data - The data to set.
    * @returns {Component} Itself
-   * @example
+   * @examples
    * # Will set user.handle equal to 'somethingElse'
    * const component = new Component('player', { user: { id: 1337, handle: 'TheChimo' } };
    * component.set('user.handle', 'somethingElse');

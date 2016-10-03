@@ -13,12 +13,12 @@ describe('Component', () => {
 
     context('When arguments are valid', () => {
       it('should create an instance', () => {
-        expect(() => new Component('example', { valid: true })).to.not.throw(Error);
+        expect(() => new Component('examples', { valid: true })).to.not.throw(Error);
       });
 
       it('should populate the initial state', () => {
         const state = { valid: true };
-        const component = new Component('example', state);
+        const component = new Component('examples', state);
         expect(component.getState()).to.eql(state);
       });
     });
@@ -26,7 +26,7 @@ describe('Component', () => {
 
   describe('.type', () => {
     it('should return component type', () => {
-      const type = 'example';
+      const type = 'examples';
       const component = new Component(type);
       expect(component.getType()).to.equal(type);
     });
@@ -35,13 +35,13 @@ describe('Component', () => {
   describe('.getState', () => {
     it('should return entire state when no path is passed', () => {
       const state = { valid: true };
-      const component = new Component('example', state);
+      const component = new Component('examples', state);
       expect(state.valid === component.getState().valid).to.be.true;
     });
 
     it('should return target value when a path is passed', () => {
       const state = { valid: true };
-      const component = new Component('example', state);
+      const component = new Component('examples', state);
       expect(component.getState('valid')).to.equal(true);
     });
   });
@@ -49,7 +49,7 @@ describe('Component', () => {
   describe('.setState', () => {
     it('should set entire state when only value is passed', () => {
       const state = { valid: true, number: 13 };
-      const component = new Component('example');
+      const component = new Component('examples');
       component.setState(state);
       expect(component.getState().valid).to.be.true;
       expect(component.getState().number).to.equal(13);
@@ -57,7 +57,7 @@ describe('Component', () => {
 
     it('should set a target field in state when a path is passed with value', () => {
       const state = { valid: true };
-      const component = new Component('example', state);
+      const component = new Component('examples', state);
       component.setState('valid', false);
       expect(component.getState('valid')).to.be.false;
     });
@@ -69,7 +69,7 @@ describe('Component', () => {
           reason: 'Because I said so.',
         },
       };
-      const component = new Component('example', state);
+      const component = new Component('examples', state);
       expect(state === component.getState()).to.be.false;
       expect(state.validation === component.getState().validation).to.be.false;
       expect(state.validation.valid === component.getState().validation.valid).to.be.true;
@@ -86,7 +86,7 @@ describe('Component', () => {
     context('When the value of state has changed', () => {
       it('should emit "change" event', () => {
         const state = { valid: true };
-        const component = new Component('example', state);
+        const component = new Component('examples', state);
         const onChange = sinon.spy();
         component.subscribe('component:change', onChange);
         component.setState('valid', false);
@@ -101,7 +101,7 @@ describe('Component', () => {
     context('When is disposed', () => {
       it('should flag as disposed', () => {
         const state = { valid: true };
-        const component = new Component('example', state);
+        const component = new Component('examples', state);
         const onDispose = sinon.spy();
         component.subscribe('component:dispose', onDispose);
         component.dispose();

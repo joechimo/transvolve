@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
-    "doc": "jsdoc src -c jsdoc.json -r -d doc -R README.md",
+    "doc": "jsdoc src -c jsdoc.json -r -d docs -R README.md",
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:examples": "node example/",
@@ -72,8 +72,8 @@
   },
   "directories": {
     "lib": "lib",
-    "doc": "doc",
-    "example": "example",
+    "doc": "docs",
+    "example": "examples",
     "test": "test"
   }
 }
