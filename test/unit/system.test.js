@@ -179,7 +179,7 @@ describe('System', () => {
 
       return system.init(source)
         .then(expect(system.getScope().length).to.equal(1))
-        .delay(16)
+        .delay(30)
         .then(() => system.execute())
         .then(() => {
           expect(system.getScope().length).to.equal(0);

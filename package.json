@@ -6,12 +6,11 @@
   "scripts": {
     "clean": "rimraf lib",
     "doc": "jsdoc src -c jsdoc.json -r -d doc -R README.md",
-    "test": "istanbul cover _mocha -- ./test --compilers js:babel-register --recursive && npm run test:coveralls",
-    "test:base": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
-    "test:coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js  && rm -rf ./coverage",
+    "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:examples": "node example/",
     "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --compilers js:babel-register --recursive",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js  && rm -rf ./coverage",
     "lint": "eslint src test",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
