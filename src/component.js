@@ -2,6 +2,7 @@ import Symbol from 'es6-symbol';
 import EventEmitter from 'eventemitter3';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import assign from 'lodash/assign';
 import values from 'lodash/values';
 import isPlainObject from 'lodash/isPlainObject';
 import isArray from 'lodash/isArray';
@@ -159,9 +160,9 @@ const Component = createClass({
     const value = !path ? this[FIELDS.state] : get(this[FIELDS.state], path);
 
     if (isArray(value)) {
-      return Object.assign([], value);
+      return assign([], value);
     } else if (isPlainObject(value)) {
-      return Object.assign({}, value);
+      return assign({}, value);
     }
 
     return value;
