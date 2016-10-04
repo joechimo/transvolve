@@ -133,7 +133,7 @@ describe('System', () => {
             expect(entity.getComponents('health').getState('hp')).to.equal(100);
           });
         })
-        .delay(16)
+        .delay(30)
         .then(() => system.execute())
         .then(() => {
           const entities = system.getScope();
@@ -145,7 +145,7 @@ describe('System', () => {
 
     it('should invoke the executor for each entity in scope.', () =>
       system.init(source)
-        .delay(16)
+        .delay(30)
         .then(() => system.execute())
         .then(() => {
           const entities = system.getScope();
