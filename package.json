@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "doc": "jsdoc src -c jsdoc.json -r -d dist/docs -R README.md",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages",
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:examples": "node example/",
