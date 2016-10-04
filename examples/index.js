@@ -1,6 +1,6 @@
-var engine = require('./example1');
+var engine = require('./example2');
 
 engine.init()
-  .then(function() {
+  .then(() => {
     engine.start();
   });

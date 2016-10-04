@@ -75,7 +75,7 @@ const Engine = createClass({
     disposableMixin(values(FIELDS), onDispose),
   ],
 
-  constructor({ manager = new EntityManager(), interval = 16 }) {
+  constructor({ manager = new EntityManager(), interval = 16 } = { manager: new EntityManager(), interval: 16 }) {
     assertEntityManager(manager);
     assertNumber(interval);
 

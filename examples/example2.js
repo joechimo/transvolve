@@ -1,7 +1,8 @@
-var Engine = require('../lib/engine').default;
-var System = require('../lib/system').default;
-var Entity = require('../lib/entity').default;
-var Component = require('../lib/component').default;
+var transvolve = require('../lib').default;
+var Engine = transvolve.Engine;
+var System = transvolve.System;
+var Entity = transvolve.Entity;
+var Component = transvolve.Component;
 
 function random(min, max) {
   var MIN = Math.ceil(min);
@@ -9,7 +10,7 @@ function random(min, max) {
   return Math.floor(Math.random() * (MAX - MIN)) + MIN;
 }
 
-var engine = new Engine({});
+var engine = new Engine();
 
 function onTick() {
   var entity = new Entity();
@@ -43,7 +44,7 @@ var decaySystem = new System({
         if (random(0, 100) >= 50) {
           entity.removeComponents('decay');
           entity.addComponents(new Component('death', { timer: 5000 }));
-          console.log(`${entity.getId()} has perished.`);
+          console.log(entity.getId() + ' has perished.');
         } else {
           entity.dispose();
         }
@@ -67,7 +68,7 @@ var resurrectSystem = new System({
       entity.removeComponents('death');
       entity.getComponents('health').setState('hp', 100);
       entity.addComponents(new Component('decay', { timer: 1000 }));
-      console.log(`${entity.getId()} has revived.`);
+      console.log(entity.getId() + ' has revived.');
     } else {
       entity.getComponents('death').setState('timer', timer);
     }
