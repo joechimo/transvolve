@@ -1,0 +1,3240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Entity - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Entity</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+
+<section>
+
+
+
+<header data-tmpl="container.tmpl">
+    
+        <h2>
+        Entity
+        </h2>
+        
+            <div class="lead">An entity is simply by an id used to reference zero to many components.
+The types of components that an entity references must be unique.</div>
+        
+    
+
+    
+      <div class="bs-callout bs-callout-default">
+        <h5>Members</h5>
+        <br />
+        <dl class="dl-horizontal methods-members">
+        <dt>Fields &amp; Properties</dt><dd><ul>
+            <li><a href="#id">id</a></li>
+            
+            <li><a href="#state">state</a></li>
+            </ul></dd><dt>Methods</dt><dd><ul>
+            <li><a href="#addComponents">addComponents</a></li>
+            
+            <li><a href="#getComponents">getComponents</a></li>
+            
+            <li><a href="#getId">getId</a></li>
+            
+            <li><a href="#hasComponents">hasComponents</a></li>
+            
+            <li><a href="#removeComponents">removeComponents</a></li>
+            </ul></dd></dl></div>
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        <!--method.tmpl-->
+<div class="method-details">
+
+
+
+
+
+    
+    <h3 class="constructor">Constructor</h3>
+    
+
+    
+      <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line73">73</a>
+  </code>
+</div>
+
+    
+
+    <h4 class="name" id="Entity">
+      <a href="#params-Entity"><span class="type-signature"></span>new Entity</a><span class="signature">()</span><span class="type-signature"></span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-Entity">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Subscribable.html">Subscribable</a></li>
+        
+            <li><a href="Disposable.html">Disposable</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n * @class\n * An entity is simply by an id used to reference zero to many components.\n * The types of components that an entity references must be unique.\n * @examples\n * #Class members are accessed through accessors.\n * const entity = new Entity();\n * const entityId = entity.getId();\n * @access public\n * @mixes Subscribable\n * @mixes Disposable\n */","meta":{"range":[2117,11750],"filename":"entity.js","lineno":73,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100002999","name":"Entity","type":"CallExpression","value":""},"shortpath":"entity.js"},"kind":"class","classdesc":"An entity is simply by an id used to reference zero to many components.\nThe types of components that an entity references must be unique.","tags":[{"originalTitle":"examples","title":"examples","text":"#Class members are accessed through accessors.\nconst entity = new Entity();\nconst entityId = entity.getId();","value":"#Class members are accessed through accessors.\nconst entity = new Entity();\nconst entityId = entity.getId();"}],"access":"public","mixes":["Subscribable","Disposable"],"name":"Entity","longname":"Entity","scope":"global","___id":"T000002R000004","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"Entity","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"></span>","ancestors":[]}
+</pre>
+-->
+</div>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            <!--members.tmpl-->
+<div class="member-details">
+
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line152">152</a>
+  </code>
+</div>
+
+
+
+<h4 class="name" id="id">
+  <span class="type-signature">(private) </span>id<span class="type-signature"> :number</span>
+</h4>
+
+
+
+
+<div class="description">
+    A literal that identifies the entity.
+</div>
+
+
+<div>
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+        
+            <!--members.tmpl-->
+<div class="member-details">
+
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line161">161</a>
+  </code>
+</div>
+
+
+
+<h4 class="name" id="state">
+  <span class="type-signature">(private) </span>state<span class="type-signature"> :*</span>
+</h4>
+
+
+
+
+<div class="description">
+    The data contained in the component, it is immutable.
+</div>
+
+
+<div>
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line277">277</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="addComponents">
+      <a href="#params-addComponents"><span class="type-signature"></span>addComponents</a><span class="signature">(&hellip;components)</span><span class="type-signature"> &rarr; {<a href="Entity.html">Entity</a>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Adds all the specified components to the entity.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-addComponents">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-addComponents" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>components</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the components to add</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li><a href="Entity.html#event:entity:add">Entity#entity:add</a></li>
+
+    <li><a href="Entity.html#event:entity:add:%257Btype%257D">Entity#entity:add:{type}</a></li>
+
+    <li>module:transvolve#event:error</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">TypeError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when an argument other than a Component is passed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error When invoked after the entity has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    Itself
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Adds all the specified components to the entity.\n   * @param {...Component} components - the components to add\n   * @returns {Entity} Itself\n   * @throws {TypeError} Will throw this error when an argument other than a Component is passed.\n   * @throws {ReferenceError} Will throw this error When invoked after the entity has been disposed.\n   * @emits Entity#entity:add\n   * @emits Entity#entity:add:{type}\n   * @emits module:transvolve#error\n   * @memberof Entity\n   * @instance\n   */","meta":{"range":[8402,9471],"filename":"entity.js","lineno":277,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100003180","name":"addComponents","type":"FunctionExpression"},"vars":{"":null},"shortpath":"entity.js"},"description":"Adds all the specified components to the entity.","params":[{"type":{"names":["Component"]},"variable":true,"description":"the components to add","name":"components"}],"returns":[{"type":{"names":["Entity"]},"description":"Itself"}],"exceptions":[{"type":{"names":["TypeError"]},"description":"Will throw this error when an argument other than a Component is passed."},{"type":{"names":["ReferenceError"]},"description":"Will throw this error When invoked after the entity has been disposed."}],"fires":["Entity#entity:add","Entity#entity:add:{type}","module:transvolve#event:error"],"memberof":"Entity","scope":"instance","name":"addComponents","longname":"Entity#addComponents","kind":"function","___id":"T000002R000250","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"addComponents","signature":"<span class=\"signature\">(&hellip;components)</span><span class=\"type-signature\"> &rarr; {<a href=\"Entity.html\">Entity</a>}</span>","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line230">230</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="getComponents">
+      <a href="#params-getComponents"><span class="type-signature"></span>getComponents</a><span class="signature">(&hellip;types)</span><span class="type-signature"> &rarr; {<a href="Component.html">Component</a>|Map.&lt;string, <a href="Component.html">Component</a>>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Gets all components contained in the entity for specified component types. Returns only a single component if
+only one type is specified, but returns a map of all components is returned if no types are specified.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-getComponents">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-getComponents" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>types</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the desired types of components</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li>module:transvolve#event:error</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">TypeError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                when an argument other than a string is passed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                when invoked after the entity has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    A single component or the map of components to component type
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Component.html">Component</a></span>
+|
+
+<span class="param-type">Map.&lt;string, <a href="Component.html">Component</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Gets all components contained in the entity for specified component types. Returns only a single component if\n   * only one type is specified, but returns a map of all components is returned if no types are specified.\n   * @param {...string} types - the desired types of components\n   * @returns {(Component|Map<string, Component>)} A single component or the map of components to component type\n   * @examples\n   * # Returns all components when no arguments are passed\n   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\n   * const components = entity.getComponents();\n   * const playerComponent = components.player;\n   * const healthComponent = components.health;\n   * @examples\n   * # Returns a single component when only one component type is passed\n   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\n   * const healthComponent = entity.getComponents('health');\n   * @examples\n   * # Returns a map of components when more than one component type is passed\n   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\n   * const components = entity.getComponents('health', 'player');\n   * const playerComponent = components.player;\n   * const healthComponent = components.health;\n   * @throws {TypeError} when an argument other than a string is passed.\n   * @throws {ReferenceError} when invoked after the entity has been disposed.\n   * @emits module:transvolve#error\n   * @memberof Entity\n   * @instance\n   */","meta":{"range":[7189,7900],"filename":"entity.js","lineno":230,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100003072","name":"getComponents","type":"FunctionExpression"},"vars":{"components":"Entity#getComponents~components","emitter":"Entity#getComponents~emitter","getComponent":"Entity#getComponents~getComponent","map":"Entity#getComponents~map","":null},"shortpath":"entity.js"},"description":"Gets all components contained in the entity for specified component types. Returns only a single component if\nonly one type is specified, but returns a map of all components is returned if no types are specified.","params":[{"type":{"names":["string"]},"variable":true,"description":"the desired types of components","name":"types"}],"returns":[{"type":{"names":["Component","Map.<string, Component>"]},"description":"A single component or the map of components to component type"}],"tags":[{"originalTitle":"examples","title":"examples","text":"# Returns all components when no arguments are passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst components = entity.getComponents();\nconst playerComponent = components.player;\nconst healthComponent = components.health;","value":"# Returns all components when no arguments are passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst components = entity.getComponents();\nconst playerComponent = components.player;\nconst healthComponent = components.health;"},{"originalTitle":"examples","title":"examples","text":"# Returns a single component when only one component type is passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst healthComponent = entity.getComponents('health');","value":"# Returns a single component when only one component type is passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst healthComponent = entity.getComponents('health');"},{"originalTitle":"examples","title":"examples","text":"# Returns a map of components when more than one component type is passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst components = entity.getComponents('health', 'player');\nconst playerComponent = components.player;\nconst healthComponent = components.health;","value":"# Returns a map of components when more than one component type is passed\nconst entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });\nconst components = entity.getComponents('health', 'player');\nconst playerComponent = components.player;\nconst healthComponent = components.health;"}],"exceptions":[{"type":{"names":["TypeError"]},"description":"when an argument other than a string is passed."},{"type":{"names":["ReferenceError"]},"description":"when invoked after the entity has been disposed."}],"fires":["module:transvolve#event:error"],"memberof":"Entity","scope":"instance","name":"getComponents","longname":"Entity#getComponents","kind":"function","___id":"T000002R000243","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"getComponents","signature":"<span class=\"signature\">(&hellip;types)</span><span class=\"type-signature\"> &rarr; {<a href=\"Component.html\">Component</a>|Map.&lt;string, <a href=\"Component.html\">Component</a>>}</span>","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line198">198</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="getId">
+      <a href="#params-getId"><span class="type-signature"></span>getId</a><span class="signature">()</span><span class="type-signature"> &rarr; {integer}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Get the id.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-getId">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after being disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The entity id.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">integer</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Get the id.\n   * @returns {integer} The entity id.\n   * @throws {ReferenceError} Will throw this error if invoked after being disposed.\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[5525,5594],"filename":"entity.js","lineno":198,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100003059","name":"getId","type":"FunctionExpression"},"shortpath":"entity.js"},"description":"Get the id.","returns":[{"type":{"names":["integer"]},"description":"The entity id."}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after being disposed."}],"scope":"instance","memberof":"Entity","name":"getId","longname":"Entity#getId","kind":"function","___id":"T000002R000242","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"getId","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"> &rarr; {integer}</span>","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line353">353</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="hasComponents">
+      <a href="#params-hasComponents"><span class="type-signature"></span>hasComponents</a><span class="signature">(&hellip;types)</span><span class="type-signature"> &rarr; {boolean}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Determines if the entity has components of all the specified types.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-hasComponents">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-hasComponents" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>types</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The component types</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">TypeError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when an argument other than a string is passed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when invoked after the entity has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The result
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Determines if the entity has components of all the specified types.\n   * @param {...string} types - The component types\n   * @returns {boolean} The result\n   * @throws {TypeError} Will throw this error when an argument other than a string is passed.\n   * @throws {ReferenceError} Will throw this error when invoked after the entity has been disposed.\n   * @memberof Entity\n   * @instance\n   */","meta":{"range":[11453,11745],"filename":"entity.js","lineno":353,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100003499","name":"hasComponents","type":"FunctionExpression"},"vars":{"self":"Entity#hasComponents~self","hasComponents":"Entity#hasComponents~hasComponents","":null},"shortpath":"entity.js"},"description":"Determines if the entity has components of all the specified types.","params":[{"type":{"names":["string"]},"variable":true,"description":"The component types","name":"types"}],"returns":[{"type":{"names":["boolean"]},"description":"The result"}],"exceptions":[{"type":{"names":["TypeError"]},"description":"Will throw this error when an argument other than a string is passed."},{"type":{"names":["ReferenceError"]},"description":"Will throw this error when invoked after the entity has been disposed."}],"memberof":"Entity","scope":"instance","name":"hasComponents","longname":"Entity#hasComponents","kind":"function","___id":"T000002R000258","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"hasComponents","signature":"<span class=\"signature\">(&hellip;types)</span><span class=\"type-signature\"> &rarr; {boolean}</span>","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line315">315</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="removeComponents">
+      <a href="#params-removeComponents"><span class="type-signature"></span>removeComponents</a><span class="signature">(&hellip;componentsOrTypes)</span><span class="type-signature"> &rarr; {<a href="Entity.html">Entity</a>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Removes all the specified components or types of components from the entity.
+Each component that is removed is disposed.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-removeComponents">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-removeComponents" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>componentsOrTypes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the components and/or component types to remove</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li><a href="Entity.html#event:entity:remove">Entity#entity:remove</a></li>
+
+    <li><a href="Entity.html#event:entity:remove:%257Btype%257D">Entity#entity:remove:{type}</a></li>
+
+    <li>module:transvolve#event:error</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">TypeError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when an argument other than a Component is passed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when invoked after the entity has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    Itself
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Removes all the specified components or types of components from the entity.\n   * Each component that is removed is disposed.\n   * @param {...(Component|string)} componentsOrTypes - the components and/or component types to remove\n   * @returns {Entity} Itself\n   * @throws {TypeError} Will throw this error when an argument other than a Component is passed.\n   * @throws {ReferenceError} Will throw this error when invoked after the entity has been disposed.\n   * @emits Entity#entity:remove\n   * @emits Entity#entity:remove:{type}\n   * @emits module:transvolve#error\n   * @memberof Entity\n   * @instance\n   */","meta":{"range":[10098,11043],"filename":"entity.js","lineno":315,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100003358","name":"removeComponents","type":"FunctionExpression"},"vars":{"":null},"shortpath":"entity.js"},"description":"Removes all the specified components or types of components from the entity.\nEach component that is removed is disposed.","params":[{"type":{"names":["Component","string"]},"variable":true,"description":"the components and/or component types to remove","name":"componentsOrTypes"}],"returns":[{"type":{"names":["Entity"]},"description":"Itself"}],"exceptions":[{"type":{"names":["TypeError"]},"description":"Will throw this error when an argument other than a Component is passed."},{"type":{"names":["ReferenceError"]},"description":"Will throw this error when invoked after the entity has been disposed."}],"fires":["Entity#entity:remove","Entity#entity:remove:{type}","module:transvolve#event:error"],"memberof":"Entity","scope":"instance","name":"removeComponents","longname":"Entity#removeComponents","kind":"function","___id":"T000002R000255","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"removeComponents","signature":"<span class=\"signature\">(&hellip;componentsOrTypes)</span><span class=\"type-signature\"> &rarr; {<a href=\"Entity.html\">Entity</a>}</span>","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+    
+
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line75">75</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:add">
+      <a href="#params-entity:add">entity:add</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:add event occurs when an entity adds a component.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:add">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line75">75</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:add" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that added the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that was added.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:add event occurs when an entity adds a component.\n   * @event entity:add\n   * @param {Entity} entity - The entity that added the component.\n   * @param {Component} component - The component that was added.\n   *\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[2143,2415],"filename":"entity.js","lineno":75,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:add event occurs when an entity adds a component.","kind":"event","name":"entity:add","params":[{"type":{"names":["Entity"]},"description":"The entity that added the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that was added.","name":"component"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:add","___id":"T000002R000226","___s":true,"attribs":"","id":"event:entity:add","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line85">85</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:add:%7Btype%7D">
+      <a href="#params-entity:add:{type}">entity:add:{type}</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:add:{type} event occurs when an entity adds a component.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:add:{type}">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line85">85</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:add:{type}" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that added the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that was added.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:add:{type} event occurs when an entity adds a component.\n   * @event entity:add:{type}\n   * @param {Entity} entity - The entity that added the component.\n   * @param {Component} component - The component that was added.\n   *\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[2419,2705],"filename":"entity.js","lineno":85,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:add:{type} event occurs when an entity adds a component.","kind":"event","name":"entity:add:{type}","params":[{"type":{"names":["Entity"]},"description":"The entity that added the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that was added.","name":"component"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:add:{type}","___id":"T000002R000227","___s":true,"attribs":"","id":"event:entity:add:%7Btype%7D","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line95">95</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:change">
+      <a href="#params-entity:change">entity:change</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:change event occurs when a component, that an entity owns, changes.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:change">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line95">95</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:change" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that owns the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that caused the change.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The new value of the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>oldState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The old value of the component.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:change event occurs when a component, that an entity owns, changes.\n   * @event entity:change\n   * @param {Entity} entity - The entity that owns the component.\n   * @param {Component} component - The component that caused the change.\n   * @param {*} newState - The new value of the component.\n   * @param {*} oldState - The old value of the component.\n   *\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[2709,3127],"filename":"entity.js","lineno":95,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:change event occurs when a component, that an entity owns, changes.","kind":"event","name":"entity:change","params":[{"type":{"names":["Entity"]},"description":"The entity that owns the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that caused the change.","name":"component"},{"type":{"names":["*"]},"description":"The new value of the component.","name":"newState"},{"type":{"names":["*"]},"description":"The old value of the component.","name":"oldState"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:change","___id":"T000002R000228","___s":true,"attribs":"","id":"event:entity:change","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line107">107</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:change:%7Btype%7D">
+      <a href="#params-entity:change:{type}">entity:change:{type}</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    A entity:change:{type} event occurs when a component, that an entity owns, changes.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:change:{type}">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line107">107</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:change:{type}" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that owns the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that was changed.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The new value of the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>oldState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The old value of the component.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * A entity:change:{type} event occurs when a component, that an entity owns, changes.\n   * @event entity:change:{type}\n   * @param {Entity} entity - The entity that owns the component.\n   * @param {Component} component - The component that was changed.\n   * @param {*} newState - The new value of the component.\n   * @param {*} oldState - The old value of the component.\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[3131,3551],"filename":"entity.js","lineno":107,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"A entity:change:{type} event occurs when a component, that an entity owns, changes.","kind":"event","name":"entity:change:{type}","params":[{"type":{"names":["Entity"]},"description":"The entity that owns the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that was changed.","name":"component"},{"type":{"names":["*"]},"description":"The new value of the component.","name":"newState"},{"type":{"names":["*"]},"description":"The old value of the component.","name":"oldState"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:change:{type}","___id":"T000002R000229","___s":true,"attribs":"","id":"event:entity:change:%7Btype%7D","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line138">138</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:dispose">
+      <a href="#params-entity:dispose">entity:dispose</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:dispose event occurs when an entity is being disposed.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:dispose">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line138">138</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:dispose" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that is being disposed.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:dispose event occurs when an entity is being disposed.\n   * @event entity:dispose\n   * @param {Entity} entity - The entity that is being disposed.\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[4168,4376],"filename":"entity.js","lineno":138,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:dispose event occurs when an entity is being disposed.","kind":"event","name":"entity:dispose","params":[{"type":{"names":["Entity"]},"description":"The entity that is being disposed.","name":"entity"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:dispose","___id":"T000002R000225","___s":true,"attribs":"","id":"event:entity:dispose","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line118">118</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:remove">
+      <a href="#params-entity:remove">entity:remove</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:remove event occurs when an entity disposes a component.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:remove">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line118">118</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:remove" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that disposing the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that is being disposed.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:remove event occurs when an entity disposes a component.\n   * @event entity:remove\n   * @param {Entity} entity - The entity that disposing the component.\n   * @param {Component} component - The component that is being disposed.\n   *\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[3555,3849],"filename":"entity.js","lineno":118,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:remove event occurs when an entity disposes a component.","kind":"event","name":"entity:remove","params":[{"type":{"names":["Entity"]},"description":"The entity that disposing the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that is being disposed.","name":"component"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:remove","___id":"T000002R000230","___s":true,"attribs":"","id":"event:entity:remove","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line128">128</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="event:entity:remove:%7Btype%7D">
+      <a href="#params-entity:remove:{type}">entity:remove:{type}</a>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    An entity:remove:{type} event occurs when an entity disposes a component.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-entity:remove:{type}">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="entity.js.html">entity.js</a>:<a href="entity.js.html#line128">128</a>
+  </code>
+</div>
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-entity:remove:{type}" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The entity that is disposing the component.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Component.html">Component</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component that is being disposed.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * An entity:remove:{type} event occurs when an entity disposes a component.\n   * @event entity:remove:{type}\n   * @param {Entity} entity - The entity that is disposing the component.\n   * @param {Component} component - The component that is being disposed.\n   *\n   * @instance\n   * @memberof Entity\n   */","meta":{"range":[3853,4164],"filename":"entity.js","lineno":128,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{},"shortpath":"entity.js"},"description":"An entity:remove:{type} event occurs when an entity disposes a component.","kind":"event","name":"entity:remove:{type}","params":[{"type":{"names":["Entity"]},"description":"The entity that is disposing the component.","name":"entity"},{"type":{"names":["Component"]},"description":"The component that is being disposed.","name":"component"}],"scope":"instance","memberof":"Entity","longname":"Entity#entity:remove:{type}","___id":"T000002R000231","___s":true,"attribs":"","id":"event:entity:remove:%7Btype%7D","ancestors":["<a href=\"Entity.html\">Entity</a>#"]}
+</pre>
+-->
+</div>
+
+        
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Mon Oct 03 2016 15:56:05 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

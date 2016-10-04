@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>entity.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">entity.js</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    <!--source.tmpl-->
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Symbol from 'es6-symbol';
+import EventEmitter from 'eventemitter3';
+import values from 'lodash/values';
+import assign from 'lodash/assign';
+import forEach from 'lodash/forEach';
+import isNil from 'lodash/isNil';
+import isString from 'lodash/isString';
+import {
+  assertComponent,
+  assertString,
+  assertDisposable,
+} from './asserts';
+import {
+  ComponentNotFoundError,
+  ComponentAlreadyOwnedError,
+  DuplicateComponentTypeError,
+} from './errors';
+import createClass from './util/create-class';
+import decorateObject from './util/decorate-object';
+import subscribableMixin from './mixins/subscribable';
+import disposableMixin from './mixins/disposable';
+import disposableDecorator from './mixins/decorator/disposable-decorator';
+
+const ID = {
+  id: 0,
+  getNext: () => ID.id++,
+};
+
+const FIELDS = {
+  id: Symbol('id'),
+  components: Symbol('components'),
+  subscriptions: Symbol('subscriptions'),
+  emitter: Symbol('emitter'),
+};
+
+function onDispose() {
+  this[FIELDS.emitter].emit('entity:dispose', this);
+  this[FIELDS.emitter].removeAllListeners();
+  forEach(this[FIELDS.components], (component) => component.dispose());
+}
+
+function onComponentChange(component, current, previous) {
+  const type = component.getType();
+  this[FIELDS.emitter].emit('entity:change', this, component);
+  this[FIELDS.emitter].emit(`entity:change:${type}`, this, component, current, previous);
+}
+
+function onComponentDispose(component) {
+  this.removeComponents(component);
+}
+
+function onComponentError(error) {
+  this[FIELDS.emitter].emit('error', error);
+}
+
+function unsubscribe(component) {
+  forEach(this[FIELDS.subscriptions][component.getType()], (componentUnsubscribe) => componentUnsubscribe());
+  delete this[FIELDS.subscriptions][component.getType()];
+}
+
+/**
+ * @class
+ * An entity is simply by an id used to reference zero to many components.
+ * The types of components that an entity references must be unique.
+ * @examples
+ * #Class members are accessed through accessors.
+ * const entity = new Entity();
+ * const entityId = entity.getId();
+ * @access public
+ * @mixes Subscribable
+ * @mixes Disposable
+ */
+const Entity = createClass({
+
+  /**
+   * An entity:add event occurs when an entity adds a component.
+   * @event entity:add
+   * @param {Entity} entity - The entity that added the component.
+   * @param {Component} component - The component that was added.
+   *
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * An entity:add:{type} event occurs when an entity adds a component.
+   * @event entity:add:{type}
+   * @param {Entity} entity - The entity that added the component.
+   * @param {Component} component - The component that was added.
+   *
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * An entity:change event occurs when a component, that an entity owns, changes.
+   * @event entity:change
+   * @param {Entity} entity - The entity that owns the component.
+   * @param {Component} component - The component that caused the change.
+   * @param {*} newState - The new value of the component.
+   * @param {*} oldState - The old value of the component.
+   *
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * A entity:change:{type} event occurs when a component, that an entity owns, changes.
+   * @event entity:change:{type}
+   * @param {Entity} entity - The entity that owns the component.
+   * @param {Component} component - The component that was changed.
+   * @param {*} newState - The new value of the component.
+   * @param {*} oldState - The old value of the component.
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * An entity:remove event occurs when an entity disposes a component.
+   * @event entity:remove
+   * @param {Entity} entity - The entity that disposing the component.
+   * @param {Component} component - The component that is being disposed.
+   *
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * An entity:remove:{type} event occurs when an entity disposes a component.
+   * @event entity:remove:{type}
+   * @param {Entity} entity - The entity that is disposing the component.
+   * @param {Component} component - The component that is being disposed.
+   *
+   * @instance
+   * @memberof Entity
+   */
+
+  /**
+   * An entity:dispose event occurs when an entity is being disposed.
+   * @event entity:dispose
+   * @param {Entity} entity - The entity that is being disposed.
+   * @instance
+   * @memberof Entity
+   */
+
+  mixins: [
+    decorateObject(subscribableMixin(FIELDS.emitter), disposableDecorator),
+    disposableMixin(values(FIELDS), onDispose),
+  ],
+
+  constructor() {
+    /**
+     * A literal that identifies the entity.
+     * @member {number} id
+     * @instance
+     * @memberof Entity
+     * @private
+     */
+    this[FIELDS.id] = ID.getNext();
+
+    /**
+     * The data contained in the component, it is immutable.
+     * @member {*} state
+     * @instance
+     * @memberof Entity
+     * @private
+     */
+    this[FIELDS.components] = {};
+
+    /**
+     * The entity subscriptions.
+     * @member {Map&lt;string, function[]>} subscriptions
+     * @instance
+     * @memberof Entity
+     * @ignore
+     * @private
+     */
+    this[FIELDS.subscriptions] = {};
+
+    /**
+     * The event emitter.
+     * @member {EventEmitter} emitter
+     * @instance
+     * @memberof Entity
+     * @private
+     * @ignore
+     */
+    this[FIELDS.emitter] = new EventEmitter();
+  },
+
+  /**
+   * Get the id.
+   * @returns {integer} The entity id.
+   * @throws {ReferenceError} Will throw this error if invoked after being disposed.
+   * @instance
+   * @memberof Entity
+   */
+  getId() {
+    assertDisposable(this);
+    return this[FIELDS.id];
+  },
+
+  /**
+   * Gets all components contained in the entity for specified component types. Returns only a single component if
+   * only one type is specified, but returns a map of all components is returned if no types are specified.
+   * @param {...string} types - the desired types of components
+   * @returns {(Component|Map&lt;string, Component>)} A single component or the map of components to component type
+   * @examples
+   * # Returns all components when no arguments are passed
+   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });
+   * const components = entity.getComponents();
+   * const playerComponent = components.player;
+   * const healthComponent = components.health;
+   * @examples
+   * # Returns a single component when only one component type is passed
+   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });
+   * const healthComponent = entity.getComponents('health');
+   * @examples
+   * # Returns a map of components when more than one component type is passed
+   * const entity = new Entity().addComponents(new Component('player'), new Component('health', { hp: 100 });
+   * const components = entity.getComponents('health', 'player');
+   * const playerComponent = components.player;
+   * const healthComponent = components.health;
+   * @throws {TypeError} when an argument other than a string is passed.
+   * @throws {ReferenceError} when invoked after the entity has been disposed.
+   * @emits module:transvolve#error
+   * @memberof Entity
+   * @instance
+   */
+  getComponents(...types) {
+    assertDisposable(this);
+    const components = this[FIELDS.components];
+    const emitter = this[FIELDS.emitter];
+
+    function getComponent(type) {
+      assertString(type);
+
+      if (components[type]) {
+        return components[type];
+      }
+
+      emitter.emit('error', new ComponentNotFoundError());
+      return undefined;
+    }
+
+    if (types.length === 0) {
+      return assign({}, components);
+    } else if (types.length === 1) {
+      return getComponent(types[0]);
+    }
+
+    const map = {};
+
+    forEach(types, (type) => {
+      const component = getComponent(type);
+
+      if (!isNil(component)) {
+        map[type] = component;
+      }
+    });
+
+    return map;
+  },
+
+  /**
+   * Adds all the specified components to the entity.
+   * @param {...Component} components - the components to add
+   * @returns {Entity} Itself
+   * @throws {TypeError} Will throw this error when an argument other than a Component is passed.
+   * @throws {ReferenceError} Will throw this error When invoked after the entity has been disposed.
+   * @emits Entity#entity:add
+   * @emits Entity#entity:add:{type}
+   * @emits module:transvolve#error
+   * @memberof Entity
+   * @instance
+   */
+  addComponents(...components) {
+    assertDisposable(this);
+    forEach(components, (component) => {
+      assertComponent(component);
+      const type = component.getType();
+
+      if (this[FIELDS.components][type]) {
+        const error = (component === this[FIELDS.components][type]) ?
+          new ComponentAlreadyOwnedError() :
+          new DuplicateComponentTypeError();
+        this[FIELDS.emitter].emit('error', error, this);
+      } else {
+        this[FIELDS.components][type] = component;
+        this[FIELDS.subscriptions][type] = [];
+        this[FIELDS.subscriptions][type].push(component.subscribe('component:change', onComponentChange.bind(this)));
+        this[FIELDS.subscriptions][type].push(component.subscribe('component:dispose', onComponentDispose.bind(this)));
+        this[FIELDS.subscriptions][type].push(component.subscribe('error', onComponentError.bind(this)));
+        this[FIELDS.emitter].emit('entity:add', this, component);
+        this[FIELDS.emitter].emit(`entity:add:${type}`, this, component);
+      }
+    });
+
+    return this;
+  },
+
+  /**
+   * Removes all the specified components or types of components from the entity.
+   * Each component that is removed is disposed.
+   * @param {...(Component|string)} componentsOrTypes - the components and/or component types to remove
+   * @returns {Entity} Itself
+   * @throws {TypeError} Will throw this error when an argument other than a Component is passed.
+   * @throws {ReferenceError} Will throw this error when invoked after the entity has been disposed.
+   * @emits Entity#entity:remove
+   * @emits Entity#entity:remove:{type}
+   * @emits module:transvolve#error
+   * @memberof Entity
+   * @instance
+   */
+  removeComponents(...componentsOrTypes) {
+    assertDisposable(this);
+    forEach(componentsOrTypes, (componentOrType) => {
+      let component = componentOrType;
+
+      if (isString(componentOrType)) {
+        component = this[FIELDS.components][component];
+        if (isNil(component)) {
+          this[FIELDS.emitter].emit('error', new ComponentNotFoundError());
+          return;
+        }
+      } else {
+        assertComponent(component);
+        if (component !== this[FIELDS.components][component.getType()]) {
+          this[FIELDS.emitter].emit('error', new ComponentNotFoundError());
+          return;
+        }
+      }
+
+      delete this[FIELDS.components][component.getType()];
+      unsubscribe.call(this, component);
+      this[FIELDS.emitter].emit('entity:remove', this, component);
+      this[FIELDS.emitter].emit(`entity:remove:${component.getType()}`, this, component);
+      component.dispose();
+    });
+
+    return this;
+  },
+
+  /**
+   * Determines if the entity has components of all the specified types.
+   * @param {...string} types - The component types
+   * @returns {boolean} The result
+   * @throws {TypeError} Will throw this error when an argument other than a string is passed.
+   * @throws {ReferenceError} Will throw this error when invoked after the entity has been disposed.
+   * @memberof Entity
+   * @instance
+   */
+  hasComponents(...types) {
+    assertDisposable(this);
+    const self = this;
+    let hasComponents = true;
+
+    forEach(types, (type) => {
+      assertString(type);
+      hasComponents = !isNil(self[FIELDS.components][type]);
+      return hasComponents;
+    });
+
+    return hasComponents;
+  },
+
+});
+
+export default Entity;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Mon Oct 03 2016 15:56:05 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

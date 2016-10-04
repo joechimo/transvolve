@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>component.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">component.js</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    <!--source.tmpl-->
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Symbol from 'es6-symbol';
+import EventEmitter from 'eventemitter3';
+import get from 'lodash/get';
+import set from 'lodash/set';
+import assign from 'lodash/assign';
+import values from 'lodash/values';
+import isPlainObject from 'lodash/isPlainObject';
+import isArray from 'lodash/isArray';
+import isNil from 'lodash/isNil';
+import {
+  requires,
+  assertDisposable,
+  assertString,
+} from './asserts';
+import createClass from './util/create-class';
+import decorateObject from './util/decorate-object';
+import subscribableMixin from './mixins/subscribable';
+import disposableMixin from './mixins/disposable';
+import disposableDecorator from './mixins/decorator/disposable-decorator';
+
+const FIELDS = {
+  type: Symbol('type'),
+  state: Symbol('state'),
+  emitter: Symbol('emitter'),
+};
+
+function onDispose() {
+  this[FIELDS.emitter].emit('component:dispose', this);
+  this[FIELDS.emitter].removeAllListeners();
+}
+
+function transition(...args) {
+  let previous = args[0];
+  const path = args.length >= 3 ? args[1] : null;
+  const value = JSON.parse(JSON.stringify(args.length >= 3 ? args[2] : args[1]));
+
+  if (isNil(previous)) {
+    if (isNil(value)) {
+      return value;
+    } else if (isArray(value)) {
+      previous = [];
+    } else if (isPlainObject(value)) {
+      previous = {};
+    }
+  }
+
+  const current = JSON.parse(JSON.stringify(previous));
+
+  if (path) {
+    assertString(path);
+    return set(current, path, value);
+  }
+
+  return value;
+}
+/**
+ * @namespace Component
+ * @class
+ * A component is simply a structured set of data defined by a type.
+ * @examples
+ * const component = new Component('health', { hp: 100 });
+ * const componentType = component.getType();
+ * @param {!string} type - The component type.
+ * @param {*} [state] - The initial state.
+ * @mixes Subscribable
+ * @mixes Disposable
+ */
+const Component = createClass({
+
+  /**
+   * A change event occurs when the state of a component changes.
+   * @event component:change
+   * @param {Component} component - The component that changed.
+   * @param {*} newState - The new value of the component.
+   * @param {*} oldState - The old value of the component.
+   * @instance
+   * @memberof Component
+   */
+
+  /**
+   * A dispose event occurs when a component is being disposed.
+   * @event component:dispose
+   * @param {Component} component - The component that is being disposed.
+   * @listens Component#Component: change
+   * @instance
+   * @memberof Component
+   */
+
+  mixins: [
+    decorateObject(subscribableMixin(FIELDS.emitter), disposableDecorator),
+    disposableMixin(values(FIELDS), onDispose),
+  ],
+
+  constructor(type, state = null) {
+    requires('type', type);
+
+    /**
+     * A literal that identifies the type of data in the component.
+     * @member {string} type
+     * @readonly
+     * @instance
+     * @memberof Component
+     * @private
+     */
+    this[FIELDS.type] = type;
+
+    /**
+     * The data contained in the component.
+     * @member {*} state
+     * @instance
+     * @memberof Component
+     * @private
+     */
+    this[FIELDS.state] = transition(null, state);
+
+    /**
+     * The event emitter.
+     * @member {EventEmitter} emitter
+     * @instance
+     * @memberof Component
+     * @private
+     * @ignore
+     */
+    this[FIELDS.emitter] = new EventEmitter();
+  },
+
+  /**
+   * Get the component type.
+   * @returns {string} The component type.
+   * @throws {ReferenceError} Will throw this error if invoked after being disposed.
+   * @instance
+   * @memberof Component
+   */
+  getType() {
+    assertDisposable(this);
+    return this[FIELDS.type];
+  },
+
+  /**
+   * Get data from the component state. Returns the entire state if no path is specified.
+   * @param {string} [path] - The path to a value in the state.
+   * @returns {*} The requested value from the state.
+   * @examples
+   * # Will set handle equal to 'TheChimo'
+   * const component = new Component('player', { user: { id: 1337, handle: 'TheChimo' } };
+   * const handle = component.get('user.handle');
+   * console.log(handle == 'TheChimo');
+   * @throws {TypeError} Will throw this error if the path argument is not a string.
+   * @throws {ReferenceError} Will throw this error if invoked after being disposed.
+   * @instance
+   * @memberof Component
+   */
+  getState(path) {
+    assertDisposable(this);
+
+    if (path) {
+      assertString(path);
+    }
+
+    const value = !path ? this[FIELDS.state] : get(this[FIELDS.state], path);
+
+    if (isArray(value)) {
+      return assign([], value);
+    } else if (isPlainObject(value)) {
+      return assign({}, value);
+    }
+
+    return value;
+  },
+
+  /**
+   * Set data into the component state. Replaces the entire state if no path is specified.
+   * @param {string} [path] - The path in the state where to set the data.
+   * @param {*} data - The data to set.
+   * @returns {Component} Itself
+   * @examples
+   * # Will set user.handle equal to 'somethingElse'
+   * const component = new Component('player', { user: { id: 1337, handle: 'TheChimo' } };
+   * component.set('user.handle', 'somethingElse');
+   * @emits Component#component:change
+   * @throws {TypeError} Will throw this error if the path argument is not a string.
+   * @throws {ReferenceError} Will throw this error if invoked after being disposed.
+   * @instance
+   * @memberof Component
+   */
+  setState(...args) {
+    assertDisposable(this);
+
+    const previous = this[FIELDS.state];
+    this[FIELDS.state] = transition(previous, ...args);
+    this[FIELDS.emitter].emit('component:change', this, this.getState(), previous);
+    return this;
+  },
+
+});
+
+export default Component;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Mon Oct 03 2016 15:56:05 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
