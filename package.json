@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
-    "doc": "jsdoc src -c jsdoc.json -r -d docs -R README.md",
+    "doc": "jsdoc src -c jsdoc.json -r -d dist/docs -R README.md",
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:examples": "node example/",
@@ -66,13 +66,12 @@
     "jsdoc": "^3.4.1",
     "loke-jsdoc-theme": "^2.1.0",
     "mocha": "^3.0.0",
-    "mocha-lcov-reporter": "^1.2.0",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.6"
   },
   "directories": {
     "lib": "lib",
-    "doc": "docs",
+    "doc": "dist/docs",
     "example": "examples",
     "test": "test"
   }
