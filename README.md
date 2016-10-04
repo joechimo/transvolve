@@ -1,4 +1,4 @@
-[![NPM Version](https://badge.fury.io/js/transvolve.svg)](https://npmjs.org/packages/transvolve) [![Build Status](https://travis-ci.org/joechimo/transvolve.svg?branch=master)](https://travis-is.org/joechimo/transvolve) [![Coverage Status](https://coveralls.io/repos/github/joechimo/transvolve/badge.svg?branch=master)](https://coveralls.io/github/joechimo/transvolve)
+[![NPM Version](https://badge.fury.io/js/transvolve.svg)](https://npmjs.org/packages/transvolve) [![Build Status](https://travis-ci.org/joechimo/transvolve.svg?branch=master)](https://travis-ci.org/joechimo/transvolve) [![Coverage Status](https://coveralls.io/repos/github/joechimo/transvolve/badge.svg?branch=master)](https://coveralls.io/github/joechimo/transvolve)
 
 # transvolve.js
 
@@ -131,13 +131,13 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/joechimo/transvolve/tags). 
 
 ## Authors
 
 * **Joe Cimaszewski** - *Initial work* - [joechimo](https://github.com/joechimo)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/joechimo/transvolve/contributors) who participated in this project.
 
 ## License
 
