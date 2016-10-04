@@ -2,7 +2,7 @@
 
 # transvolve.js
 
-One Paragraph of project description goes here
+The ECS engine you can react to!
 
 ## Getting Started
 
