@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>engine.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">engine.js</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    <!--source.tmpl-->
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import EntityManager from './entity-manager';
+import Promise from 'bluebird';
+import Symbol from 'es6-symbol';
+import EventEmitter from 'eventemitter3';
+import values from 'lodash/values';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+import {
+  assertDisposable,
+  assertEntityManager,
+  assertSystem,
+  assertNumber,
+} from './asserts';
+import createClass from './util/create-class';
+import decorateObject from './util/decorate-object';
+import subscribableMixin from './mixins/subscribable';
+import disposableMixin from './mixins/disposable';
+import disposableDecorator from './mixins/decorator/disposable-decorator';
+import Entity from './entity';
+
+const FIELDS = {
+  manager: Symbol('manager'),
+  systems: Symbol('systems'),
+  process: Symbol('process'),
+  interval: Symbol('interval'),
+  executedOn: Symbol('executedOn'),
+  state: Symbol('state'),
+  emitter: Symbol('emitter'),
+};
+
+const STATE = {
+  PENDING: 0,
+  INITIALIZED: 1,
+  IDLE: 2,
+  RUNNING: 3,
+  STOPPING: 4,
+  STOPPED: 6,
+  ERROR: 7,
+};
+
+function createEntity() {
+  const entity = new Entity();
+  this[FIELDS.manager].addEntities(entity);
+  return entity;
+}
+
+function onError(error) {
+  this[FIELDS.emitter].emit('error', error);
+}
+
+function onDispose() {
+  this.stop();
+  this[FIELDS.emitter].emit('dispose');
+  this[FIELDS.emitter].removeAllListeners();
+}
+
+/**
+ * @class
+ * The engine manages all entities and the main system loop. Adding new entities to
+ * the engine will automatically set them up to be watched by the registered systems.
+ * @example
+ * #Creating a new engine.
+ * const engine = new Engine({
+ *     interval: 16,
+ * });
+ * @param {number} [config.interval=16] - The number of milliseconds between executions.
+ * @access public
+ * @mixes Subscribable
+ * @mixes Disposable
+ */
+const Engine = createClass({
+
+  mixins: [
+    decorateObject(subscribableMixin(FIELDS.emitter), disposableDecorator),
+    disposableMixin(values(FIELDS), onDispose),
+  ],
+
+  constructor({ manager = new EntityManager(), interval = 16 } = { manager: new EntityManager(), interval: 16 }) {
+    assertEntityManager(manager);
+    assertNumber(interval);
+
+    this[FIELDS.interval] = interval;
+    this[FIELDS.manager] = manager;
+    this[FIELDS.systems] = [];
+    this[FIELDS.state] = STATE.PENDING;
+    this[FIELDS.emitter] = new EventEmitter();
+
+    manager.subscribe('error', onError.bind(this));
+  },
+
+  /**
+   * Get the engine state.
+   * @returns {string} The engine state.
+   * @throws {ReferenceError} Will throw this error if invoked after being disposed.
+   * @instance
+   * @memberof Engine
+   */
+  getState() {
+    assertDisposable(this);
+    return this[FIELDS.state];
+  },
+
+  /**
+   * Adds all specified entities to the engine.
+   * @param {...entities} entities - The entities.
+   * @returns {Engine} Itself
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @memberof Engine
+   * @instance
+   */
+  addEntities(...entities) {
+    assertDisposable(this);
+    const self = this;
+
+    function addEntity(entity) {
+      self[FIELDS.manager].addEntities(entity);
+      entity.subscribe('error', onError.bind(self));
+    }
+
+    forEach(entities, addEntity);
+    return this;
+  },
+
+  /**
+   * Removes all specified entities from the engine.
+   * @param {...(Entity|number)} entitiesOrIds - The entities or entity ids.
+   * @returns {Engine} Itself
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @memberof Engine
+   * @instance
+   */
+  removeEntities(...entitiesOrIds) {
+    assertDisposable(this);
+    this[FIELDS.manager].removeEntities(...entitiesOrIds);
+    return this;
+  },
+
+  /**
+   * Adds all specified systems to the engine.
+   * @param {...System} systems - The systems.
+   * @returns {Engine} Itself
+   * @throws {TypeError}
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @memberof Engine
+   * @instance
+   */
+  addSystems(...systems) {
+    assertDisposable(this);
+    const self = this;
+
+    forEach(systems, (system) => {
+      assertSystem(system);
+      system.subscribe('error', onError.bind(self));
+      self[FIELDS.systems].push(system);
+    });
+
+    return this;
+  },
+
+  /**
+   * Initializes the engine and all registered systems.
+   * @returns {Promise} The engine initialization.
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @throws {Error} Will throw this error when the engine is not capable of being initialized.
+   * @emits Engine#initialize
+   * @memberof Engine
+   * @instance
+   */
+  init() {
+    assertDisposable(this);
+    const state = this[FIELDS.state];
+    const manager = this[FIELDS.manager];
+    const systems = this[FIELDS.systems];
+
+    if (state === STATE.PENDING) {
+      const initializers = [];
+
+      forEach(systems, (system) => {
+        initializers.push(system.init(manager));
+      });
+
+      return Promise.all(initializers)
+        .then(() => {
+          this[FIELDS.state] = STATE.INITIALIZED;
+          this[FIELDS.emitter].emit('initialize');
+        });
+    }
+
+    return Promise.reject(new Error('ECS can no longer be initialized.'));
+  },
+
+  /**
+   * Starts the engine loop.
+   * @returns {Promise} The engine start.
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @throws {Error} Will throw this error when the engine is not capable of being started.
+   * @emits Engine#start
+   * @emits Engine#idle
+   * @emits Engine#stop
+   * @emits Engine#tick
+   * @memberof Engine
+   * @instance
+   */
+  start() {
+    assertDisposable(this);
+    const state = this[FIELDS.state];
+    const systems = this[FIELDS.systems];
+    const emitter = this[FIELDS.emitter];
+
+    if (state === STATE.INITIALIZED || state === STATE.STOPPED) {
+      const interval = this[FIELDS.interval];
+      const context = {};
+      set(context, 'entityService.get', this[FIELDS.manager].getEntities);
+      set(context, 'entityService.find', this[FIELDS.manager].findEntities);
+      set(context, 'entityService.remove', this[FIELDS.manager].removeEntities);
+      set(context, 'entityService.length', this[FIELDS.manager].length);
+      set(context, 'entityFactory.create', createEntity.bind(this));
+      set(context, 'componentFactory.create', createEntity.bind(this));
+
+      this[FIELDS.process] = setInterval(() => {
+        Promise.resolve(this[FIELDS.state] = STATE.RUNNING)
+          .then(() => Promise.each(systems, (system) => system.execute(context)))
+          .then(() => {
+            emitter.emit('tick');
+            if (this[FIELDS.state] === STATE.RUNNING) {
+              this[FIELDS.state] = STATE.IDLE;
+              this[FIELDS.emitter].emit('idle');
+            } else if (this[FIELDS.state] === STATE.STOPPING) {
+              this[FIELDS.state] = STATE.STOPPED;
+              this[FIELDS.emitter].emit('stop');
+            }
+          });
+      }, interval);
+
+      this[FIELDS.state] = STATE.RUNNING;
+      this[FIELDS.emitter].emit('start');
+
+      return Promise.resolve();
+    }
+
+    return Promise.reject(new Error('ECS cannot be started.'));
+  },
+
+  /**
+   * Stops the engine loop.
+   * @returns {Promise} The engine stop.
+   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.
+   * @throws {Error} Will throw this error when the engine is not capable of being stopped.
+   * @emits Engine#stop
+   * @memberof Engine
+   * @instance
+   */
+  stop() {
+    assertDisposable(this);
+    return new Promise((resolve, reject) => {
+      if (this[FIELDS.state] === STATE.RUNNING) {
+        this[FIELDS.state] = STATE.STOPPING;
+        clearInterval(this[FIELDS.process]);
+        resolve();
+      } else if (this[FIELDS.state] === STATE.IDLE) {
+        clearInterval(this[FIELDS.process]);
+        this[FIELDS.state] = STATE.STOPPED;
+        this[FIELDS.emitter].emit('stop');
+        resolve();
+      }
+
+      reject(new Error('ECS cannot be stopped.'));
+    });
+  },
+
+});
+
+export default Engine;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Tue Oct 04 2016 12:04:14 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

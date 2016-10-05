@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Engine - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Engine</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+
+<section>
+
+
+
+<header data-tmpl="container.tmpl">
+    
+        <h2>
+        Engine
+        </h2>
+        
+            <div class="lead">The engine manages all entities and the main system loop. Adding new entities to
+the engine will automatically set them up to be watched by the registered systems.</div>
+        
+    
+
+    
+      <div class="bs-callout bs-callout-default">
+        <h5>Members</h5>
+        <br />
+        <dl class="dl-horizontal methods-members">
+        <dt>Methods</dt><dd><ul>
+            <li><a href="#addEntities">addEntities</a></li>
+            
+            <li><a href="#addSystems">addSystems</a></li>
+            
+            <li><a href="#getState">getState</a></li>
+            
+            <li><a href="#init">init</a></li>
+            
+            <li><a href="#removeEntities">removeEntities</a></li>
+            
+            <li><a href="#start">start</a></li>
+            
+            <li><a href="#stop">stop</a></li>
+            </ul></dd></dl></div>
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        <!--method.tmpl-->
+<div class="method-details">
+
+
+
+
+
+    
+    <h3 class="constructor">Constructor</h3>
+    
+
+    
+      <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line71">71</a>
+  </code>
+</div>
+
+    
+
+    <h4 class="name" id="Engine">
+      <a href="#params-Engine"><span class="type-signature"></span>new Engine</a><span class="signature">()</span><span class="type-signature"></span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>#Creating a new engine.
+const engine = new Engine({
+    interval: 16,
+});</code></pre>
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-Engine">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Subscribable.html">Subscribable</a></li>
+        
+            <li><a href="Disposable.html">Disposable</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-Engine" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config.interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    16
+                
+                </td>
+            
+
+            <td class="description last">The number of milliseconds between executions.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n * @class\n * The engine manages all entities and the main system loop. Adding new entities to\n * the engine will automatically set them up to be watched by the registered systems.\n * @example\n * #Creating a new engine.\n * const engine = new Engine({\n *     interval: 16,\n * });\n * @param {number} [config.interval=16] - The number of milliseconds between executions.\n * @access public\n * @mixes Subscribable\n * @mixes Disposable\n */","meta":{"range":[1791,8035],"filename":"engine.js","lineno":71,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001004","name":"Engine","type":"CallExpression","value":""},"shortpath":"engine.js"},"kind":"class","classdesc":"The engine manages all entities and the main system loop. Adding new entities to\nthe engine will automatically set them up to be watched by the registered systems.","examples":[{"caption":"","code":"#Creating a new engine.\nconst engine = new Engine({\n    interval: 16,\n});"}],"params":[{"type":{"names":["number"]},"optional":true,"defaultvalue":16,"description":"The number of milliseconds between executions.","name":"config.interval"}],"access":"public","mixes":["Subscribable","Disposable"],"name":"Engine","longname":"Engine","scope":"global","___id":"T000002R000003","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"Engine","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"></span>","ancestors":[]}
+</pre>
+-->
+</div>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line111">111</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="addEntities">
+      <a href="#params-addEntities"><span class="type-signature"></span>addEntities</a><span class="signature">(&hellip;entities)</span><span class="type-signature"> &rarr; {<a href="Engine.html">Engine</a>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Adds all specified entities to the engine.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-addEntities">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-addEntities" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entities</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">entities</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The entities.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    Itself
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Engine.html">Engine</a></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Adds all specified entities to the engine.\n   * @param {...entities} entities - The entities.\n   * @returns {Engine} Itself\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[2947,3221],"filename":"engine.js","lineno":111,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001120","name":"addEntities","type":"FunctionExpression"},"vars":{"self":"Engine#addEntities~self","addEntity":"Engine#addEntities~addEntity"},"shortpath":"engine.js"},"description":"Adds all specified entities to the engine.","params":[{"type":{"names":["entities"]},"variable":true,"description":"The entities.","name":"entities"}],"returns":[{"type":{"names":["Engine"]},"description":"Itself"}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."}],"memberof":"Engine","scope":"instance","name":"addEntities","longname":"Engine#addEntities","kind":"function","___id":"T000002R000113","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"addEntities","signature":"<span class=\"signature\">(&hellip;entities)</span><span class=\"type-signature\"> &rarr; {<a href=\"Engine.html\">Engine</a>}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line147">147</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="addSystems">
+      <a href="#params-addSystems"><span class="type-signature"></span>addSystems</a><span class="signature">(&hellip;systems)</span><span class="type-signature"> &rarr; {<a href="Engine.html">Engine</a>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Adds all specified systems to the engine.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-addSystems">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-addSystems" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>systems</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="System.html">System</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The systems.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">TypeError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    Itself
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Engine.html">Engine</a></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Adds all specified systems to the engine.\n   * @param {...System} systems - The systems.\n   * @returns {Engine} Itself\n   * @throws {TypeError}\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[3978,4241],"filename":"engine.js","lineno":147,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001187","name":"addSystems","type":"FunctionExpression"},"vars":{"self":"Engine#addSystems~self","":null},"shortpath":"engine.js"},"description":"Adds all specified systems to the engine.","params":[{"type":{"names":["System"]},"variable":true,"description":"The systems.","name":"systems"}],"returns":[{"type":{"names":["Engine"]},"description":"Itself"}],"exceptions":[{"type":{"names":["TypeError"]}},{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."}],"memberof":"Engine","scope":"instance","name":"addSystems","longname":"Engine#addSystems","kind":"function","___id":"T000002R000117","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"addSystems","signature":"<span class=\"signature\">(&hellip;systems)</span><span class=\"type-signature\"> &rarr; {<a href=\"Engine.html\">Engine</a>}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line98">98</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="getState">
+      <a href="#params-getState"><span class="type-signature"></span>getState</a><span class="signature">()</span><span class="type-signature"> &rarr; {string}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Get the engine state.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-getState">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after being disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The engine state.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Get the engine state.\n   * @returns {string} The engine state.\n   * @throws {ReferenceError} Will throw this error if invoked after being disposed.\n   * @instance\n   * @memberof Engine\n   */","meta":{"range":[2590,2665],"filename":"engine.js","lineno":98,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001107","name":"getState","type":"FunctionExpression"},"shortpath":"engine.js"},"description":"Get the engine state.","returns":[{"type":{"names":["string"]},"description":"The engine state."}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after being disposed."}],"scope":"instance","memberof":"Engine","name":"getState","longname":"Engine#getState","kind":"function","___id":"T000002R000112","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"getState","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"> &rarr; {string}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line169">169</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="init">
+      <a href="#params-init"><span class="type-signature"></span>init</a><span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Initializes the engine and all registered systems.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-init">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li>Engine#event:initialize</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">Error</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when the engine is not capable of being initialized.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The engine initialization.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Initializes the engine and all registered systems.\n   * @returns {Promise} The engine initialization.\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @throws {Error} Will throw this error when the engine is not capable of being initialized.\n   * @emits Engine#initialize\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[4627,5210],"filename":"engine.js","lineno":169,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001234","name":"init","type":"FunctionExpression"},"vars":{"state":"Engine#init~state","manager":"Engine#init~manager","systems":"Engine#init~systems","initializers":"Engine#init~initializers","":null},"shortpath":"engine.js"},"description":"Initializes the engine and all registered systems.","returns":[{"type":{"names":["Promise"]},"description":"The engine initialization."}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."},{"type":{"names":["Error"]},"description":"Will throw this error when the engine is not capable of being initialized."}],"fires":["Engine#event:initialize"],"memberof":"Engine","scope":"instance","name":"init","longname":"Engine#init","kind":"function","___id":"T000002R000119","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"init","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"> &rarr; {Promise}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line132">132</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="removeEntities">
+      <a href="#params-removeEntities"><span class="type-signature"></span>removeEntities</a><span class="signature">(&hellip;entitiesOrIds)</span><span class="type-signature"> &rarr; {<a href="Engine.html">Engine</a>}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Removes all specified entities from the engine.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-removeEntities">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+  <div id="params-removeEntities" class="bs-callout bs-callout-primary">
+    <h5>Parameters</h5>
+    <!--params.tmpl-->
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entitiesOrIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.html">Entity</a></span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The entities or entity ids.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    Itself
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Engine.html">Engine</a></span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Removes all specified entities from the engine.\n   * @param {...(Entity|number)} entitiesOrIds - The entities or entity ids.\n   * @returns {Engine} Itself\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[3534,3676],"filename":"engine.js","lineno":132,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001165","name":"removeEntities","type":"FunctionExpression"},"shortpath":"engine.js"},"description":"Removes all specified entities from the engine.","params":[{"type":{"names":["Entity","number"]},"variable":true,"description":"The entities or entity ids.","name":"entitiesOrIds"}],"returns":[{"type":{"names":["Engine"]},"description":"Itself"}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."}],"memberof":"Engine","scope":"instance","name":"removeEntities","longname":"Engine#removeEntities","kind":"function","___id":"T000002R000116","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"removeEntities","signature":"<span class=\"signature\">(&hellip;entitiesOrIds)</span><span class=\"type-signature\"> &rarr; {<a href=\"Engine.html\">Engine</a>}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line204">204</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="start">
+      <a href="#params-start"><span class="type-signature"></span>start</a><span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Starts the engine loop.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-start">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li>Engine#event:start</li>
+
+    <li>Engine#event:idle</li>
+
+    <li>Engine#event:stop</li>
+
+    <li>Engine#event:tick</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">Error</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when the engine is not capable of being started.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The engine start.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Starts the engine loop.\n   * @returns {Promise} The engine start.\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @throws {Error} Will throw this error when the engine is not capable of being started.\n   * @emits Engine#start\n   * @emits Engine#idle\n   * @emits Engine#stop\n   * @emits Engine#tick\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[5623,7174],"filename":"engine.js","lineno":204,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001332","name":"start","type":"FunctionExpression"},"vars":{"state":"Engine#start~state","systems":"Engine#start~systems","emitter":"Engine#start~emitter","interval":"Engine#start~interval","context":"Engine#start~context","this[undefined]":"Engine#[undefined]","":null},"shortpath":"engine.js"},"description":"Starts the engine loop.","returns":[{"type":{"names":["Promise"]},"description":"The engine start."}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."},{"type":{"names":["Error"]},"description":"Will throw this error when the engine is not capable of being started."}],"fires":["Engine#event:start","Engine#event:idle","Engine#event:stop","Engine#event:tick"],"memberof":"Engine","scope":"instance","name":"start","longname":"Engine#start","kind":"function","___id":"T000002R000125","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"start","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"> &rarr; {Promise}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+            <!--method.tmpl-->
+<div class="method-details">
+
+
+
+  <!--source-link.tmpl-->
+
+
+<div class="pull-right source-link-container">
+  <code class="source-link" data-tmpl="method-tmpl(1)">
+    <i class="fa fa-file-o"></i>
+    <a href="engine.js.html">engine.js</a>:<a href="engine.js.html#line253">253</a>
+  </code>
+</div>
+
+
+
+
+    
+
+    
+
+    <h4 class="name" id="stop">
+      <a href="#params-stop"><span class="type-signature"></span>stop</a><span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span>
+
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    Stops the engine loop.
+</div>
+
+
+
+
+
+
+
+
+<div class="collapse_" id="methodCollapse-stop">
+
+  
+
+  
+
+<!-- details.tmpl -->
+
+
+
+
+
+
+
+
+<dl class="dl-horizontal">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li>Engine#event:stop</li>
+</ul>
+
+
+
+
+
+
+
+  <div class="bs-callout bs-callout-danger">
+    <h5>Throws</h5>
+    
+<dl class="dl-horizontal">
+
+            <dt>
+              
+                
+<span class="param-type">ReferenceError</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error if invoked after the engine has been disposed.
+              
+            </dd>
+            
+            <dt>
+              
+                
+<span class="param-type">Error</span>
+
+
+              
+            </dt>
+            <dd>
+              
+                Will throw this error when the engine is not capable of being stopped.
+              
+            </dd>
+            
+</dl>
+
+  </div>
+
+
+
+  <div class="bs-callout bs-callout-success">
+    <h5>Returns </h5>
+
+        
+<div class="param-desc">
+    The engine stop.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+</div>
+  
+
+
+
+
+
+
+</div>
+
+<!--
+<pre>
+{"comment":"/**\n   * Stops the engine loop.\n   * @returns {Promise} The engine stop.\n   * @throws {ReferenceError} Will throw this error if invoked after the engine has been disposed.\n   * @throws {Error} Will throw this error when the engine is not capable of being stopped.\n   * @emits Engine#stop\n   * @memberof Engine\n   * @instance\n   */","meta":{"range":[7512,8030],"filename":"engine.js","lineno":253,"path":"/Users/josephcimaszewski/git/transvolve/src","code":{"id":"astnode100001604","name":"stop","type":"FunctionExpression"},"vars":{"":null},"shortpath":"engine.js"},"description":"Stops the engine loop.","returns":[{"type":{"names":["Promise"]},"description":"The engine stop."}],"exceptions":[{"type":{"names":["ReferenceError"]},"description":"Will throw this error if invoked after the engine has been disposed."},{"type":{"names":["Error"]},"description":"Will throw this error when the engine is not capable of being stopped."}],"fires":["Engine#event:stop"],"memberof":"Engine","scope":"instance","name":"stop","longname":"Engine#stop","kind":"function","___id":"T000002R000136","___s":true,"attribs":"<span class=\"type-signature\"></span>","id":"stop","signature":"<span class=\"signature\">()</span><span class=\"type-signature\"> &rarr; {Promise}</span>","ancestors":["<a href=\"Engine.html\">Engine</a>#"]}
+</pre>
+-->
+</div>
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Tue Oct 04 2016 12:04:14 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

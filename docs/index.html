@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><p><a href="https://npmjs.org/packages/transvolve"><img src="https://badge.fury.io/js/transvolve.svg" alt="NPM Version"></a> <a href="https://travis-is.org/joechimo/transvolve"><img src="https://travis-ci.org/joechimo/transvolve.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/joechimo/transvolve"><img src="https://coveralls.io/repos/github/joechimo/transvolve/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<h1>transvolve.js</h1><p>The ECS engine you can react to!</p>
+<h2>Getting Started</h2><p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.</p>
+<h3>Installing</h3><p>Getting all set up is easy.</p>
+<p>First, install the npm package to you project.</p>
+<pre class="prettyprint source"><code>npm install transvolve</code></pre><p>Then, go ahead and import it into your code and run.</p>
+<pre class="prettyprint source"><code>import { Engine } from 'transvolve';
+
+const engine = new Engine();</code></pre><p>Take a gander at the <a href="https://joechimo.github.io/transvolve/">transvolve.js</a> GitHub Page and the <a href="https://joechimo.github.io/transvolve/docs/">API Documentation</a>.</p>
+<h2>Running the tests</h2><p>Test can be ran using:</p>
+<pre class="prettyprint source"><code>npm run test</code></pre><h2>Example code that demonstrates the engine</h2><pre class="prettyprint source"><code>   var transvolve = require('transvolve');
+   var Engine = transvolve.Engine;
+   var System = transvolve.System;
+   var Entity = transvolve.Entity;
+   var Component = transvolve.Component;
+
+   function random(min, max) {
+     var MIN = Math.ceil(min);
+     var MAX = Math.floor(max);
+     return Math.floor(Math.random() * (MAX - MIN)) + MIN;
+   }
+
+   var engine = new Engine();
+
+   function onTick() {
+     var entity = new Entity();
+     var healthComponent = new Component('health', { hp: 100 });
+     var decayComponent = new Component('decay');
+
+     entity.addComponents(healthComponent, decayComponent);
+     engine.addEntities(entity);
+   }
+
+   var decaySystem = new System({
+     name: 'decay',
+     requirements: ['decay'],
+     interval: 100,
+     executor: (context) => {
+       var entity = context.entity;
+
+       var timer = entity.getComponents('decay').getState('timer');
+       timer = timer - context.time.delta;
+
+       if (timer > 0) {
+         entity.getComponents('decay').setState('timer', timer);
+       } else {
+         var hp = entity.getComponents('health').getState('hp');
+         var loss = random(0, 100);
+
+         hp = (hp - loss) > 0 ? hp - loss : 0;
+         entity.getComponents('health').setState('hp', hp);
+
+         if (hp === 0) {
+           if (random(0, 100) >= 50) {
+             entity.removeComponents('decay');
+             entity.addComponents(new Component('death', { timer: 5000 }));
+             console.log(entity.getId() + ' has perished.');
+           } else {
+             entity.dispose();
+           }
+         } else {
+           entity.getComponents('decay').setState('timer', 1000);
+         }
+       }
+     },
+   });
+
+   var resurrectSystem = new System({
+     name: 'resurrect',
+     requirements: ['death'],
+     interval: 1000,
+     executor: (context) => {
+       var entity = context.entity;
+       var timer = entity.getComponents('death').getState('timer');
+       timer = timer - context.time.delta;
+
+       if (timer &lt;= 0) {
+         entity.removeComponents('death');
+         entity.getComponents('health').setState('hp', 100);
+         entity.addComponents(new Component('decay', { timer: 1000 }));
+         console.log(entity.getId() + ' has revived.');
+       } else {
+         entity.getComponents('death').setState('timer', timer);
+       }
+     },
+   });
+
+   engine.addSystems(decaySystem, resurrectSystem);
+   engine.subscribe('tick', onTick);
+
+   engine.init()
+     .then(() => {
+       engine.start();
+     });</code></pre><h2>Contributing</h2><p>Please read <a href="https://gist.github.com/PurpleBooth/b24679402957c63ec426">CONTRIBUTING.md</a> for details on our code of conduct, and the process for submitting pull requests to us.</p>
+<h2>Versioning</h2><p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/your/project/tags">tags on this repository</a>. </p>
+<h2>Authors</h2><ul>
+<li><strong>Joe Cimaszewski</strong> - <em>Initial work</em> - <a href="https://github.com/joechimo">joechimo</a></li>
+</ul>
+<p>See also the list of <a href="https://github.com/your/project/contributors">contributors</a> who participated in this project.</p>
+<h2>License</h2><p>This project is licensed under the MIT License - see the <a href="LICENSE.md">LICENSE.md</a> file for details</p>
+<h2>Acknowledgments</h2><ul>
+<li>Just me, right now.</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Tue Oct 04 2016 12:04:14 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>entity-manager.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="Component.html#event:component:change">component:change</a></li><li><a href="Component.html#event:component:dispose">component:dispose</a></li><li><a href="Entity.html#event:entity:add">entity:add</a></li><li><a href="Entity.html#event:entity:add:%257Btype%257D">entity:add:{type}</a></li><li><a href="Entity.html#event:entity:change">entity:change</a></li><li><a href="Entity.html#event:entity:change:%257Btype%257D">entity:change:{type}</a></li><li><a href="Entity.html#event:entity:dispose">entity:dispose</a></li><li><a href="Entity.html#event:entity:remove">entity:remove</a></li><li><a href="Entity.html#event:entity:remove:%257Btype%257D">entity:remove:{type}</a></li><li><a href="module-ecs-js.html#event:error">error</a></li><li><a href="System.html#event:system:unwatch">system:unwatch</a></li><li><a href="System.html#event:system:watch">system:watch</a></li></ul><h3>Modules</h3><ul><li><a href="module-ecs-js.html">ecs-js</a></li></ul><h3>Classes</h3><ul><li><a href="Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Component.html#getState">getState</a></li><li data-type='method'><a href="Component.html#getType">getType</a></li><li data-type='method'><a href="Component.html#setState">setState</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#addEntities">addEntities</a></li><li data-type='method'><a href="Engine.html#addSystems">addSystems</a></li><li data-type='method'><a href="Engine.html#getState">getState</a></li><li data-type='method'><a href="Engine.html#init">init</a></li><li data-type='method'><a href="Engine.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="Engine.html#start">start</a></li><li data-type='method'><a href="Engine.html#stop">stop</a></li></ul></li><li><a href="Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="Entity.html#addComponents">addComponents</a></li><li data-type='method'><a href="Entity.html#getComponents">getComponents</a></li><li data-type='method'><a href="Entity.html#getId">getId</a></li><li data-type='method'><a href="Entity.html#hasComponents">hasComponents</a></li><li data-type='method'><a href="Entity.html#removeComponents">removeComponents</a></li></ul></li><li><a href="EntityManager.html">EntityManager</a><ul class='methods'><li data-type='method'><a href="EntityManager.html#addEntities">addEntities</a></li><li data-type='method'><a href="EntityManager.html#clear">clear</a></li><li data-type='method'><a href="EntityManager.html#contains">contains</a></li><li data-type='method'><a href="EntityManager.html#findEntities">findEntities</a></li><li data-type='method'><a href="EntityManager.html#forEach">forEach</a></li><li data-type='method'><a href="EntityManager.html#getEntities">getEntities</a></li><li data-type='method'><a href="EntityManager.html#length">length</a></li><li data-type='method'><a href="EntityManager.html#removeEntities">removeEntities</a></li><li data-type='method'><a href="EntityManager.html#toArray">toArray</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#execute">execute</a></li><li data-type='method'><a href="System.html#getExecutedOn">getExecutedOn</a></li><li data-type='method'><a href="System.html#getInterval">getInterval</a></li><li data-type='method'><a href="System.html#getName">getName</a></li><li data-type='method'><a href="System.html#getRequirements">getRequirements</a></li><li data-type='method'><a href="System.html#getScope">getScope</a></li><li data-type='method'><a href="System.html#getState">getState</a></li><li data-type='method'><a href="System.html#init">init</a></li><li data-type='method'><a href="System.html#unwatchEntity">unwatchEntity</a></li><li data-type='method'><a href="System.html#watchEntity">watchEntity</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="Disposable.html">Disposable</a></li><li><a href="Subscribable.html">Subscribable</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">entity-manager.js</h1>
+    
+
+    <!--container.tmpl-->
+
+
+
+
+    <!--source.tmpl-->
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Symbol from 'es6-symbol';
+import EventEmitter from 'eventemitter3';
+import values from 'lodash/values';
+import forEach from 'lodash/forEach';
+import isNil from 'lodash/isNil';
+import isNumber from 'lodash/isNumber';
+import {
+  assertDisposable,
+  assertEntity,
+  assertNumber,
+  assertFunction,
+} from './asserts';
+import {
+  EntityNotFoundError,
+  EntityAlreadyExistsError,
+} from './errors';
+import createClass from './util/create-class';
+import decorateObject from './util/decorate-object';
+import subscribableMixin from './mixins/subscribable';
+import disposableMixin from './mixins/disposable';
+import disposableDecorator from './mixins/decorator/disposable-decorator';
+
+const FIELDS = {
+  nodes: Symbol('nodes'),
+  head: Symbol('head'),
+  tail: Symbol('tail'),
+  length: Symbol('length'),
+  state: Symbol('state'),
+  emitter: Symbol('emitter'),
+};
+
+function onDispose() {
+  this[FIELDS.emitter].emit('dispose');
+  this[FIELDS.emitter].removeAllListeners();
+
+  this.clear();
+}
+
+function onEntityDispose(entity) {
+  this.removeEntities(entity);
+}
+
+function onEntityAdd(entity, component) {
+  this[FIELDS.emitter].emit('entity:add', entity, component);
+  this[FIELDS.emitter].emit(`entity:add:${component.getType()}`, entity, component);
+}
+
+function onEntityChange(entity, component, current, previous) {
+  this[FIELDS.emitter].emit('entity:change', entity, component, current, previous);
+  this[FIELDS.emitter].emit(`entity:change:${component.getType()}`, entity, component, current, previous);
+}
+
+function onEntityRemove(entity, component) {
+  this[FIELDS.emitter].emit('entity:remove', entity, component);
+  this[FIELDS.emitter].emit(`entity:remove:${component.getType()}`, entity, component);
+}
+
+/**
+ * @class
+ * An entity manager organizes and manages a doubly linked list of entities and provides a hub for
+ * notifications of changes for the entities.
+ * @examples
+ * #Creating a new EntityManager.
+ * const manager = new EntityManager();
+ * const entity = new Entity();
+ * manager.addEntities(entity);
+ * @access public
+ * @mixes Subscribable
+ * @mixes Disposable
+ */
+const EntityManager = createClass({
+
+  /**
+   * A single entity reference within an entity manager.
+   * @typedef {Object} EntityNode
+   * @property {Entity} entity - The entity.
+   * @property {EntityNode} previous - The previous node.
+   * @property {EntityNode} next - The next node.
+   * @instance
+   * @memberof EntityManager
+   */
+
+  mixins: [
+    decorateObject(subscribableMixin(FIELDS.emitter), disposableDecorator),
+    disposableMixin(values(FIELDS), onDispose),
+  ],
+
+  constructor() {
+    /**
+     * The map of entity nodes in the entity manager.
+     * @member {Map&lt;number, EntityNode>} nodes
+     * @instance
+     * @memberof EntityManager
+     * @private
+     * @ignore
+     */
+    this[FIELDS.nodes] = {};
+    this[FIELDS.head] = null;
+    this[FIELDS.tail] = null;
+    this[FIELDS.length] = 0;
+    this[FIELDS.state] = 'IDLE';
+    this[FIELDS.emitter] = new EventEmitter();
+  },
+
+  /**
+   * Gets the length of the entity list.
+   * @returns {number} The length of the entity list.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @instance
+   * @memberof EntityManager
+   */
+  length() {
+    assertDisposable(this);
+    return this[FIELDS.length];
+  },
+
+  /**
+   * Gets all entities in the entity manager for specified ids. Returns only a single entity if
+   * only one id is specified, but returns all entities if no ids are specified.
+   * @param {...number} ids - The entity ids.
+   * @returns {(Entity|Entity[])} A single entity or and array of entities.
+   * @throws {TypeError} Will throw this error if an argument other than a number is passed.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @emits module:transvolve#error
+   * @memberof EntityManager
+   * @instance
+   */
+  getEntities(...ids) {
+    assertDisposable(this);
+    forEach(ids, assertNumber);
+    const nodes = this[FIELDS.nodes];
+    const emitter = this[FIELDS.emitter];
+
+    function getEntity(id) {
+      if (nodes[id]) {
+        return nodes[id].entity;
+      }
+
+      emitter.emit('error', new EntityNotFoundError());
+      return null;
+    }
+
+    if (ids.length === 0) {
+      return this.toArray();
+    } else if (ids.length === 1) {
+      return getEntity(ids[0]);
+    }
+
+    const entities = [];
+
+    forEach(ids, (id) => {
+      const entity = getEntity(id);
+
+      if (!isNil(entity)) {
+        entities.push(entity);
+      }
+    });
+
+    return entities;
+  },
+
+
+  /**
+   * Finds all entities in the entity manager that return truthy for the predicate.
+   * @param {function} predicate - The predicate function.
+   * @returns {Entity[]} The entities that return truthy.
+   * @throws {TypeError} Will throw this error if the predicate is not a function.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @memberof EntityManager
+   * @instance
+   */
+  findEntities(predicate) {
+    assertDisposable(this);
+    assertFunction(predicate);
+    const entities = [];
+    let node = this[FIELDS.head];
+
+    while (!isNil(node)) {
+      if (predicate(node.entity)) {
+        entities.push(node.entity);
+      }
+      node = node.next;
+    }
+
+    return entities;
+  },
+
+  /**
+   * Adds all specified entities to the entity manager.
+   * @param {...Entity} entities - The entities.
+   * @returns {EntityManager} Itself
+   * @throws {TypeError} Will throw this error if any argument is not an Entity.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @emits EntityManager#manager:add
+   * @emits module:transvolve#error
+   * @memberof EntityManager
+   * @instance
+   */
+  addEntities(...entities) {
+    assertDisposable(this);
+    forEach(entities, assertEntity);
+
+    const nodes = this[FIELDS.nodes];
+    const emitter = this[FIELDS.emitter];
+
+    forEach(entities, (entity) => {
+      if (nodes[entity.getId()]) {
+        emitter.emit('error', new EntityAlreadyExistsError());
+      } else {
+        const node = {
+          entity,
+          previous: null,
+          next: null,
+          subscriptions: [],
+        };
+
+        if (isNil(this[FIELDS.head])) {
+          this[FIELDS.head] = node;
+          this[FIELDS.tail] = node;
+        } else {
+          this[FIELDS.tail].next = node;
+          node.previous = this[FIELDS.tail];
+          this[FIELDS.tail] = node;
+        }
+
+        this[FIELDS.nodes][entity.getId()] = node;
+        this[FIELDS.length]++;
+
+        node.subscriptions.push(entity.subscribe('entity:dispose', onEntityDispose.bind(this)));
+        node.subscriptions.push(entity.subscribe('entity:change', onEntityChange.bind(this)));
+        node.subscriptions.push(entity.subscribe('entity:add', onEntityAdd.bind(this)));
+        node.subscriptions.push(entity.subscribe('entity:remove', onEntityRemove.bind(this)));
+
+        this[FIELDS.emitter].emit('manager:add', entity);
+      }
+    });
+
+    return this;
+  },
+
+  /**
+   * Removes all specified entities from the entity manager.
+   * @param {...(Entity|number)} entitiesOrIds - The entities or entity ids.
+   * @returns {EntityManager} Itself
+   * @throws {TypeError} Will throw this error if any argument is not an Entity or a number.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @emits EntityManager#manager:remove
+   * @emits module:transvolve#error
+   * @memberof EntityManager
+   * @instance
+   */
+  removeEntities(...entitiesOrIds) {
+    assertDisposable(this);
+
+    const nodes = this[FIELDS.nodes];
+    const emitter = this[FIELDS.emitter];
+
+    forEach(entitiesOrIds, (entityOrId) => {
+      let node;
+      let entity;
+
+      if (isNumber(entityOrId)) {
+        node = nodes[entityOrId];
+        entity = node.entity;
+      } else {
+        assertEntity(entityOrId);
+        entity = entityOrId;
+        node = nodes[entity.getId()];
+      }
+
+      if (isNil(node) || (entity !== node.entity)) {
+        emitter.emit('error', new EntityNotFoundError());
+      } else {
+        if (this[FIELDS.head] === node) {
+          this[FIELDS.head] = node.next;
+        }
+
+        if (this[FIELDS.tail] === node) {
+          this[FIELDS.tail] = node.previous;
+        }
+
+        if (node.previous) {
+          node.previous.next = node.next;
+        }
+
+        if (node.next) {
+          node.next.previous = node.previous;
+        }
+
+        forEach(node.subscriptions, (unsubscribe) => {
+          unsubscribe();
+        });
+
+        delete this[FIELDS.nodes][node.entity.getId()];
+        this[FIELDS.length]--;
+        this[FIELDS.emitter].emit('manager:remove', node.entity);
+      }
+    });
+
+    return this;
+  },
+
+  /**
+   * Returns truthy is the entity manager contains a specified entity.
+   * @param {Entity} entity - The entity.
+   * @returns {boolean} If the entity manager contains the entity.
+   * @throws {TypeError} Will throw this error if entity is not an Entity.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @memberof EntityManager
+   * @instance
+   */
+  contains(entity) {
+    assertDisposable(this);
+    assertEntity(entity);
+
+    const nodes = this[FIELDS.nodes];
+    return !isNil(nodes[entity.getId()]) &amp;&amp; (entity === nodes[entity.getId()].entity);
+  },
+
+  /**
+   * Iterates over elements of collection and invokes iteratee for each element.
+   * @param {function} iteratee - The iteratee function.
+   * @throws {TypeError} Will throw this error if the iteratee is not a function.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @memberof EntityManager
+   * @instance
+   */
+  forEach(iteratee) {
+    assertDisposable(this);
+    assertFunction(iteratee);
+
+    let node = this[FIELDS.head];
+
+    while (!isNil(node)) {
+      iteratee(node.entity);
+      node = node.next;
+    }
+  },
+
+  /**
+   * Removes all entities from the manager.
+   * @returns {EntityManager} Itself
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @memberof EntityManager
+   * @instance
+   */
+  clear() {
+    assertDisposable(this);
+    while (!isNil(this[FIELDS.head])) {
+      this.removeEntities(this[FIELDS.head].entity);
+    }
+
+    return this;
+  },
+
+  /**
+   * Turns the doubly linked list to an array.
+   * @returns {Entity[]} The array of entities.
+   * @throws {ReferenceError} Will throw this error if invoked after the entity manager has been disposed.
+   * @memberof EntityManager
+   * @instance
+   */
+  toArray() {
+    assertDisposable(this);
+    const entities = [];
+    let node = this[FIELDS.head];
+
+    while (!isNil(node)) {
+      entities.push(node.entity);
+      node = node.next;
+    }
+
+    return entities;
+  },
+});
+
+export default EntityManager;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Tue Oct 04 2016 12:04:14 GMT-0400 (EDT) using the LOKE theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
